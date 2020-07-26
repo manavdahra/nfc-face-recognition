@@ -56,7 +56,7 @@ def collect_data(child_upload):
 
 
 def collect_images():
-    child_uploads = s3_client.list_objects_v2(Bucket='skoolnet-staging', Prefix='upload/child/100')
+    child_uploads = s3_client.list_objects_v2(Bucket='skoolnet-staging', Prefix='upload/child')
     for child_upload in child_uploads['Contents']:
         collect_data(child_upload)
     print('Successfully collected images and saved to {}'.format(constants.DATASET_LOCATION))
