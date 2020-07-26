@@ -8,7 +8,7 @@ def train():
     children = []
     encodings = []
     for root, _, files in os.walk(constants.DATASET_LOCATION):
-        if len(files) > 1:
+        if len(files) > 0:
             print(root, files)
             file = files[0]
             # Load a sample picture and learn how to recognize it.
