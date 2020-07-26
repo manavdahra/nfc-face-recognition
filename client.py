@@ -1,12 +1,9 @@
-import face_recognition
-import cv2
-import numpy as np
-import data
-import model
-import requests
-import server
 import io
 import zlib
+
+import cv2
+import numpy as np
+import requests
 
 # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
 # other example, but it includes some basic performance tweaks to make things run a lot faster:
@@ -25,6 +22,7 @@ process_this_frame = True
 url = 'http://127.0.0.1:5000/recognize'
 headers = {'Content-Type': 'application/octet-stream'}
 
+
 def compress_nparr(nparr):
     """
     Returns the given numpy array as compressed bytestring,
@@ -35,6 +33,10 @@ def compress_nparr(nparr):
     uncompressed = bytestream.getvalue()
     compressed = zlib.compress(uncompressed)
     return compressed, len(uncompressed), len(compressed)
+
+
+face_locations = []
+face_names = []
 
 print('Starting face recognition client. Ready to test')
 while True:
@@ -81,7 +83,6 @@ while True:
     # Hit 'q' on the keyboard to quit!
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
 
 # Release handle to the webcam
 video_capture.release()
